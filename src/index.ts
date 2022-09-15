@@ -20,11 +20,16 @@ app.get("/user/:name",async (req, res)=>{
 
 app.get("/calculadora", (req, res)=>{
   const { operacao, valorA, valorB } = req.query;
-  if(!operacao || !valorA || !valorB){
-    return res.status(404).send("<h1>Falta parametro</h1>")
-  } 
-  const response = calcular(operacao as string, Number(valorA), Number(valorB))
-  return res.status(200).send(`<h1>A operaçao ${operacao} com os valores ${valorA} e ${valorB} resultou em ${response}</h1>`)
+  try {
+    if(!operacao || !valorA || !valorB){
+      return res.status(404).send("<h1>Falta parametro</h1>")
+    } 
+    const response = calcular(operacao as string, Number(valorA), Number(valorB))
+    return res.status(200).send(`<h1>A operaçao ${operacao} com os valores ${valorA} e ${valorB} resultou em ${response}</h1>`)
+  } catch(erro: any){
+    console.error({ erro });
+    return res.status(500).send(`<h1>${erro.message}</h1>`)
+  }
 })
 
 app.listen(8080, () => console.log("Servidor iniciado"));
