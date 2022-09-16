@@ -43,8 +43,6 @@ app.get("/calculadora", (req, res) => {
 let contador = 0;
 
 app.get("/contador", (req, res) => {
-  console.log(req);
-
   contador++;
   if (contador >= 10) {
     contador = 0;
