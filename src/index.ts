@@ -80,11 +80,27 @@ app.get("/inverter-string",(req,res)=> {
   if(!valor){
     return res.status(400).send("<h1>É necessário passar um valor</h1>")
   } 
-return res.status(200).send(Array.from(valor as string).reverse().join(''))
-  
+  return res.status(200).send(Array.from(valor as string).reverse().join(''))
+})
+//================================fim atividade 5 =================================================
+
+//==================atividade 6=================================================
+let letras: Array<string> = []
+let vogais = "aeiou"
+app.get("/remover-vogais",(req, res) => {
+  const {valor} = req.query;
+  if(!valor){
+    return res.status(400).send("<h1>É necessário passar um valor</h1>")
+  } 
+  let valorAtual = Array.from((valor as string).toLowerCase()).filter(letra => !vogais.includes(letra)).join("")
+  letras.push(valorAtual)
+  return res.status(200).send(letras)
+})
+
+//================================fim atividade 6 =================================================
 
   
-})
+
 
 
 app.listen(8080, () => console.log("Servidor iniciado"));
