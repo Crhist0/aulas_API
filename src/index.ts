@@ -39,9 +39,12 @@ app.get("/calculadora", (req, res) => {
   }
 });
 
+//Atividade 03
 let contador = 0;
 
 app.get("/contador", (req, res) => {
+  console.log(req);
+
   contador++;
   if (contador >= 10) {
     contador = 0;
