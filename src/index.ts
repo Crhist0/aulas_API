@@ -74,6 +74,18 @@ app.get("/numeral",(req, res) => {
 
 //================================fim atividade 4 =================================================
 
+//================================atividade 5=====================================================
+app.get("/inverter-string",(req,res)=> {
+  const {valor} = req.query;
+  if(!valor){
+    return res.status(400).send("<h1>É necessário passar um valor</h1>")
+  } 
+return res.status(200).send(Array.from(valor as string).reverse().join(''))
+  
+
+  
+})
+
 
 app.listen(8080, () => console.log("Servidor iniciado"));
 
