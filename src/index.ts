@@ -17,6 +17,8 @@ app.get("/user/:name", async (req, res) => {
   res.json(userGH);
 });
 
+//===========================atividade2====================================================
+
 app.get("/calculadora", (req, res) => {
   const { operacao, valorA, valorB } = req.query;
   try {
@@ -38,8 +40,9 @@ app.get("/calculadora", (req, res) => {
     return res.status(500).send(`<h1>${erro.message}</h1>`);
   }
 });
+//==================fim atividade2=============================================
 
-//Atividade 03
+//=====================================Atividade 03=================================================
 let contador = 0;
 
 app.get("/contador", (req, res) => {
@@ -52,5 +55,27 @@ app.get("/contador", (req, res) => {
     .status(200)
     .send(`<h1>O valor atual do contador: ${contador}</h1>`);
 });
+//==================fim atividade3=============================================
+
+
+//==================atividade 4=================================================
+
+app.get("/numeral",(req, res) => {
+  const { numero, operacao} = req.query;
+  if(!numero || !operacao || (operacao !== "proximo" && operacao != "anterior")){
+    return res.status(400).send("<h1>É necessário passar um número e uma operação</h1>")
+  } 
+
+  return operacao as string === "anterior" 
+    ? res.send(`<h1> O numero ${operacao} ao ${numero} é ${Number(numero)-1 }`)
+    : res.send(`<h1> O numero ${operacao} ao ${numero} é ${Number(numero)+1 }`)
+  // return res.send(`${numero} e ${operacao}`)
+})
+
+//================================fim atividade 4 =================================================
+
 
 app.listen(8080, () => console.log("Servidor iniciado"));
+
+
+
